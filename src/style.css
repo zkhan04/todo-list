@@ -1,0 +1,23 @@
+/* .complete {
+    background-color: green;
+}
+
+.incomplete {
+    background-color: orange;
+} */
+
+.card {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: rgb(153, 153, 255);
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+}
+
+body {
+    background-color: rgb(79, 79, 255);
+}
