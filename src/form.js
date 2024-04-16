@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import { todo_item } from "./todo";
 import { todo_view } from "./todo_view";
+import { condensed_todo_view } from "./condensed_todo_view";
 // title
 // due date
 // description
@@ -18,6 +19,8 @@ import { todo_view } from "./todo_view";
 // if we want to add new parameters, we need to do it in three places:
 // in the JSON file, in the todo_item definition, and in the todo_view
 
+// constructs a label-input pair using an id, a name, and the type of input
+// may move this to a separate module tbh
 function createLabelInputPair(id, name, type) {
     const input = document.createElement('input');
     input.id = id;
@@ -38,14 +41,19 @@ function createLabelInputPair(id, name, type) {
     return {inputPairDiv, getValue};
 }
 
+// creates the form
 const createForm = () => {
     const form = document.createElement('form');
+    form.classList.add('todo-form')
+
+    // label input pairs
     const titleField = createLabelInputPair("title", "title", "text");
     const dueField = createLabelInputPair("due-date", "due date", "text");
     const descriptionField = createLabelInputPair('description', 'description', "text");
     const priorityField = createLabelInputPair('priority', 'priority', 'text');
     const completeBox = createLabelInputPair('complete', 'complete', 'checkbox');
 
+    // adds them to DOM
     const inputs = [titleField, descriptionField, dueField, priorityField, completeBox];
     inputs.forEach(elmt => {
         form.append(elmt.inputPairDiv);
@@ -56,6 +64,7 @@ const createForm = () => {
     submitBtn.innerHTML = "submit";
     form.append(submitBtn);
     
+    // gets todo data when the form is submitted
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
@@ -65,7 +74,8 @@ const createForm = () => {
         })
 
         const new_todo = todo_item(...info);
-        document.body.appendChild(todo_view(new_todo));
+        const todo_section = document.querySelector('.todos');
+        todo_section.appendChild(condensed_todo_view(new_todo));
     })
 
     return form;

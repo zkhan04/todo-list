@@ -1,33 +1,24 @@
-import { condensed_todo_view } from "./condensed_todo_view";
+import { todo_view } from "./todo_view";
 
-// constructs a todo card from a todo item. The 'V' in MVC
-const todo_view = (todo_item) => {
-    const card = document.createElement('div');
+// a more condensed todo view
+const condensed_todo_view = (todo_item) => {
+    let card = document.createElement('div');
     card.classList.add('card');
-    card.classList.add('expanded');
+    card.classList.add('condensed');
 
-    // html elements
     const title = document.createElement('p');
-    const description = document.createElement('p');
     const dueDate = document.createElement('p');
-    const priority = document.createElement('p');
-    const condenseButton = document.createElement('button');
     const complete = document.createElement('input');
-    complete.type = "checkbox";
-
-    // populate html elements with data from todo item
+    const expandButton = document.createElement('button');
+    
     title.innerHTML = todo_item.getTitle();
-    description.innerHTML = todo_item.getDescription();
     dueDate.innerHTML = todo_item.getDueDate();
-    priority.innerHTML = todo_item.getPriority();
-    condenseButton.innerHTML = "reduce"
     complete.checked = todo_item.getComplete();
+    expandButton.innerHTML = "expand"
+    complete.type = 'checkbox';
 
-    // class lists for styling
     title.classList.add('title');
-    description.classList.add('description');
     dueDate.classList.add('due-date');
-    priority.classList.add('priority');
     complete.classList.add('complete');
 
     // refresh styling by updating the css class
@@ -48,22 +39,24 @@ const todo_view = (todo_item) => {
         refreshStyling();
     });
 
-    // replaces it with the condensed view
-    condenseButton.addEventListener('click', () => {
-        card.replaceWith(condensed_todo_view(todo_item));
+    // replaces it with an expanded version
+    expandButton.addEventListener('click', () => {
+        card.replaceWith(todo_view(todo_item))
     })
 
     // append html elements to the card, apply styling
     card.appendChild(title);
-    card.appendChild(description);
     card.appendChild(dueDate);
-    card.appendChild(priority);
     card.appendChild(complete);
-    card.appendChild(condenseButton);
+    card.appendChild(expandButton);
     refreshStyling();
 
     return card;
 }
 
-export {todo_view};
+export {condensed_todo_view}
 
+// instead, put a card inside a div
+// should we consolidate todo_view and condensed_todo_view into a single file
+// let's add the ability for subtasks to be added!
+// but first, it'll make more sense to put the form in a modal

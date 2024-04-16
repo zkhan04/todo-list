@@ -1,23 +1,85 @@
-/* .complete {
-    background-color: green;
+@font-face {
+    font-family: "Helvetica";
+    src: url('./assets/helvetica-light-587ebe5a59211.ttf');
+    font-weight: 600;
+    font-weight: normal;
+}
+
+.complete {
+    background-color: rgba(160, 255, 106, 0.425);
 }
 
 .incomplete {
-    background-color: orange;
-} */
+    background-color: rgba(255, 122, 122, 0.425);
+}
+
+
+html {
+    overflow: hidden;
+    font-family: "Helvetica";
+    height: 100%;
+}
 
 .card {
     padding: 10px;
-    display: flex;
-    flex-direction: column;
     gap: 20px;
-    background-color: rgb(153, 153, 255);
     border-radius: 10px;
     border-style: solid;
     border-width: 1px;
     border-color: white;
 }
 
+.expanded {
+    display: flex;
+    flex-direction: column;
+}
+
+.condensed {
+    display: flex;
+    flex-direction: row;
+}
+
 body {
     background-color: rgb(79, 79, 255);
+    min-height: 100vh;
+    display: grid;
+    grid: 1fr / 1fr 4fr;
 }
+
+
+.todo-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+    flex-direction: column;
+    gap: 5px;
+    height: 100%;
+    width: 100%;
+
+    label {
+        color: white;
+        margin-right: 10px;
+    }
+}
+
+.todos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: auto;
+
+    .title {
+        font-weight: bold;
+    }
+
+    .description {
+        font-size: 0.9em;
+    }
+
+}
+
+/*
+next up: make it so that todos are displayed as a single row, rather than a card
+*/

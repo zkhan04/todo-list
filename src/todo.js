@@ -1,4 +1,5 @@
 const todo_item = function(title, description, dueDate, priority, complete) {
+    // getters
     const getTitle = () => title;
     const getDescription = () => description;
     const getDueDate = () => dueDate;
@@ -15,6 +16,7 @@ const todo_item = function(title, description, dueDate, priority, complete) {
         else complete = true;
     }
 
+    // console logging
     const logItem = () => console.log({
         "title": title,
         "description": description,
