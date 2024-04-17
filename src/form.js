@@ -42,20 +42,18 @@ function createLabelInputPair(id, name, type) {
 }
 
 // creates the form
-const createForm = () => {
+// we should be able to generalize this to any set of parameters
+const createForm = (formInputs) => {
     const form = document.createElement('form');
     form.classList.add('todo-form');
     form.classList.add('hidden');
 
-    // label input pairs
-    const titleField = createLabelInputPair("title", "title", "text");
-    const dueField = createLabelInputPair("due-date", "due date", "text");
-    const descriptionField = createLabelInputPair('description', 'description', "text");
-    const priorityField = createLabelInputPair('priority', 'priority', 'text');
-    const completeBox = createLabelInputPair('complete', 'complete', 'checkbox');
+    const inputs = [];
+    formInputs.forEach((row) => {
+        inputs.push(createLabelInputPair(...row));
+    })
 
     // adds them to DOM
-    const inputs = [titleField, descriptionField, dueField, priorityField, completeBox];
     inputs.forEach(elmt => {
         form.append(elmt.inputPairDiv);
     })
@@ -64,26 +62,31 @@ const createForm = () => {
     submitBtn.type = "submit";
     submitBtn.innerHTML = "submit";
     form.append(submitBtn);
-    
-    // gets todo data when the form is submitted
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
 
-        let info = []
+    // refactoring time :///////
+    // confirmed to work
+    const getFormData = () => {
+        const info = []
         inputs.forEach((elmt) => {
             info.push(elmt.getValue());
         })
+        return info;
+    }
 
-        const new_todo = todo_item(...info);
-        const todo_section = document.querySelector('.todos');
-        todo_section.appendChild(condensed_todo_view(new_todo));
-
-        form.classList.remove('shown');
-        form.classList.add('hidden');
-    })
-
-    return form;
+    return {form, getFormData};
 }
 
 export {createForm};
+
+// now we wanna add cards inside of cards
+// we want a variable storing the parent container of the "add item" button that was clicked
+// in the form submit event listener, instead of putting it div.todos by default, we put it in the element that was clicked
+// how?
+
+// click button inside card
+// make form visible
+// add a parameter to createForm?
+// or a function that changes where to append things to
+// so we initialize it by default to div.todos
+// and a function is used to change
 
