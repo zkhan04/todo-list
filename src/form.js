@@ -44,7 +44,8 @@ function createLabelInputPair(id, name, type) {
 // creates the form
 const createForm = () => {
     const form = document.createElement('form');
-    form.classList.add('todo-form')
+    form.classList.add('todo-form');
+    form.classList.add('hidden');
 
     // label input pairs
     const titleField = createLabelInputPair("title", "title", "text");
@@ -76,9 +77,13 @@ const createForm = () => {
         const new_todo = todo_item(...info);
         const todo_section = document.querySelector('.todos');
         todo_section.appendChild(condensed_todo_view(new_todo));
+
+        form.classList.remove('shown');
+        form.classList.add('hidden');
     })
 
     return form;
 }
 
 export {createForm};
+
