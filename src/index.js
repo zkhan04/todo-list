@@ -15,7 +15,7 @@ const formInputs = [
 const modalButton = document.querySelector('.show-modal');
 const overlay = document.querySelector('.overlay');
 const form = createForm(formInputs);
-const todo_section = document.querySelector('.todos');
+let todo_section = document.querySelector('.todos');
 
 document.body.prepend(form.form);
 
@@ -38,5 +38,6 @@ form.form.addEventListener('submit', (e) => {
     overlay.classList.add('hidden');
     form.form.classList.remove('shown');
     form.form.classList.add('hidden');
-})
+});
+
 

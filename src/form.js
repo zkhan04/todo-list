@@ -76,6 +76,40 @@ const createForm = (formInputs) => {
     return {form, getFormData};
 }
 
+// class Form {
+//     constructor(formInputs) {
+//         this.form = document.createElement('form');
+//         this.form.classList.add('todo-form');
+//         this.form.classList.add('hidden');
+
+//         const inputs = [];
+//         formInputs.forEach((row) => {
+//             inputs.push(createLabelInputPair(...row));
+//         })
+
+//         inputs.forEach((elmt) => {
+//             this.form.append(elmt.inputPairDiv);
+//         })
+
+//         const submitBtn = document.createElement('button');
+//         submitBtn.type = "submit";
+//         submitBtn.innerHTML = "submit";
+//         this.form.append(submitBtn);
+//     }
+
+//     getFormData() {
+//         const info = [];
+//         inputs.forEach((elmt) => {
+//             info.push(elmt.getValue());
+//         })
+//         return info;
+//     }
+
+//     appendTo(element) {
+//         element.appendChild(this.form);
+//     }
+// }
+
 export {createForm};
 
 // now we wanna add cards inside of cards
