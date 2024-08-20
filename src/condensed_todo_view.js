@@ -2,26 +2,35 @@ import { todo_view } from "./todo_view";
 
 // a more condensed todo view
 const condensed_todo_view = (todo_item) => {
-    let card = document.createElement('div');
+    // card is what this function returns
+    const card = document.createElement('div');
+
+    // classes for styling
     card.classList.add('card');
     card.classList.add('condensed');
 
+    // task descriptors
     const title = document.createElement('p');
     const dueDate = document.createElement('p');
     const complete = document.createElement('input');
+    complete.type = 'checkbox';
+   
+    // this button expands it into a normal todo view
     const expandButton = document.createElement('button');
     
+    // fills in the task descriptor fields
+    // using the info from the todo_item.
     title.innerHTML = todo_item.getTitle();
     dueDate.innerHTML = todo_item.getDueDate();
     complete.checked = todo_item.getComplete();
     expandButton.innerHTML = "expand"
-    complete.type = 'checkbox';
-
+    
+    // classes for styling
     title.classList.add('title');
     dueDate.classList.add('due-date');
     complete.classList.add('complete');
 
-    // refresh styling by updating the css class
+    // whenever the item is completed/un-completed, refresh the styling
     const refreshStyling = () => {
         if (todo_item.getComplete()) {
             card.classList.remove('incomplete');

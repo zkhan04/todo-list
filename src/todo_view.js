@@ -20,9 +20,9 @@ const todo_view = (todo_item) => {
     description.innerHTML = todo_item.getDescription();
     dueDate.innerHTML = todo_item.getDueDate();
     priority.innerHTML = todo_item.getPriority();
-    condenseButton.innerHTML = "reduce"
     complete.checked = todo_item.getComplete();
-
+    condenseButton.innerHTML = "reduce"
+    
     // class lists for styling
     title.classList.add('title');
     description.classList.add('description');
@@ -64,6 +64,11 @@ const todo_view = (todo_item) => {
 
     return card;
 }
+
+// I believe it is appropriate for todo_view and condensed_todo_view
+// to subclass the same class, as they have the same general structure
+// and commands. First, I will place the two files side-by-side and
+// rewrite them so they're basically identical :P
 
 export {todo_view};
 

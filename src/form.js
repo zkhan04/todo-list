@@ -44,10 +44,12 @@ function createLabelInputPair(id, name, type) {
 // creates the form
 // we should be able to generalize this to any set of parameters
 const createForm = (formInputs) => {
+    // the form is hidden by default
     const form = document.createElement('form');
     form.classList.add('todo-form');
     form.classList.add('hidden');
 
+    // a list of label-input pairs constructed from the info in each row
     const inputs = [];
     formInputs.forEach((row) => {
         inputs.push(createLabelInputPair(...row));
@@ -58,13 +60,14 @@ const createForm = (formInputs) => {
         form.append(elmt.inputPairDiv);
     })
 
+    // the submit button for the form.
     const submitBtn = document.createElement('button');
     submitBtn.type = "submit";
     submitBtn.innerHTML = "submit";
     form.append(submitBtn);
 
-    // refactoring time :///////
-    // confirmed to work
+    // gets the information from the form. uses the getValue()
+    // function from a label-input pair.
     const getFormData = () => {
         const info = []
         inputs.forEach((elmt) => {
