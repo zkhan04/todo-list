@@ -2,6 +2,7 @@ import { createForm } from "./form";
 import { todo_item } from "./todo";
 import { todo_view } from "./todo_view";
 import { condensed_todo_view } from "./condensed_todo_view";
+import { todo_view_items } from "./common_todo_view";
 import './style.css';
 
 // it appears that these are inputs used for form creation.
@@ -47,7 +48,8 @@ form.form.addEventListener('submit', (e) => {
     const info = form.getFormData();
 
     const new_todo = todo_item(...info);
-    todo_section.appendChild(condensed_todo_view(new_todo));
+    const view_items = todo_view_items(new_todo)
+    todo_section.appendChild(condensed_todo_view(view_items));
 
     overlay.classList.remove('shown');
     overlay.classList.add('hidden');

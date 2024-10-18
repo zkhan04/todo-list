@@ -1,7 +1,8 @@
-import { todo_view } from "./todo_view";
+// import { todo_view } from "./todo_view";
+import {todo_view_items} from "./common_todo_view";
 
 // a more condensed todo view
-const condensed_todo_view = (todo_item) => {
+const condensed_todo_view = (todo_view_items) => {
     // card is what this function returns
     const card = document.createElement('div');
 
@@ -9,30 +10,17 @@ const condensed_todo_view = (todo_item) => {
     card.classList.add('card');
     card.classList.add('condensed');
 
-    // task descriptors
-    const title = document.createElement('p');
-    const dueDate = document.createElement('p');
-    const complete = document.createElement('input');
-    complete.type = 'checkbox';
-   
+    const title = todo_view_items.title;
+    const dueDate = todo_view_items.dueDate;
+    const complete = todo_view_items.complete;
+
     // this button expands it into a normal todo view
     const expandButton = document.createElement('button');
+    expandButton.innerHTML = "expand";
     
-    // fills in the task descriptor fields
-    // using the info from the todo_item.
-    title.innerHTML = todo_item.getTitle();
-    dueDate.innerHTML = todo_item.getDueDate();
-    complete.checked = todo_item.getComplete();
-    expandButton.innerHTML = "expand"
-    
-    // classes for styling
-    title.classList.add('title');
-    dueDate.classList.add('due-date');
-    complete.classList.add('complete');
-
     // whenever the item is completed/un-completed, refresh the styling
     const refreshStyling = () => {
-        if (todo_item.getComplete()) {
+        if (todo_view_items.todo_item.getComplete()) {
             card.classList.remove('incomplete');
             card.classList.add('complete');
         } else {
@@ -44,14 +32,14 @@ const condensed_todo_view = (todo_item) => {
     // toggles the completion and refreshes the styling when the checkbox is clicked
     complete.addEventListener('change', () => 
     {
-        todo_item.toggleComplete();
+        todo_view_items.todo_item.toggleComplete();
         refreshStyling();
     });
 
-    // replaces it with an expanded version
-    expandButton.addEventListener('click', () => {
-        card.replaceWith(todo_view(todo_item))
-    })
+    // // replaces it with an expanded version
+    // expandButton.addEventListener('click', () => {
+    //     card.replaceWith(todo_view(todo_view_items))
+    // })
 
     // append html elements to the card, apply styling
     card.appendChild(title);
