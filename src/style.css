@@ -2,6 +2,10 @@ h1{
     color: rebeccapurple;
 }
 
-.todo_view {
+.condensed_view {
     background-color: aqua;
+}
+
+.expanded_view {
+    background-color: blanchedalmond
 }

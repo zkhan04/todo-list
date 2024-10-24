@@ -10,7 +10,7 @@ const todo_element_collection = (todo_item) => {
 
     const toggleComplete = () => {todo_item.toggleComplete()};
 
-    complete.addEventListener('change', toggleComplete)
+    complete.addEventListener('change', toggleComplete);
 
     // populate html elements with data from todo item
     title.innerHTML = todo_item.getTitle();
